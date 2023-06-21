@@ -12,22 +12,24 @@ class App {
     if (words.isEmpty()) {
       return "{}";
     } else {
-      var result = "";
+      StringBuilder result = new StringBuilder("{\n");
+
       for (var key: words.keySet()) {
-        result += "  " + key + ":" + " " + words.get(key) + "\n";
+        result.append("  " + key + ":" + " " + words.get(key) + "\n");
       }
 
-      return "{\n" + result + "}";
+      return result.append("}").toString();
     }
   }
 
   public static Map<String,Integer> getWordCount(String sentence) {
+    Map<String,Integer> wordsCount = new HashMap<>();
+
     if (sentence.isBlank()) {
-      return new HashMap<String,Integer>();
+      return wordsCount;
     }
 
     List<String> words = new ArrayList<>(Arrays.stream(sentence.split(" ")).toList());
-    Map<String,Integer> wordsCount = new HashMap<>();
     var count = 0;
 
     for (var word: words) {
