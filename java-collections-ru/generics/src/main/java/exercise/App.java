@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 // BEGIN
 public class App {
-    public static Map<String,String> getComparedMap(Map<String,String> cond, Map<String,String> book) {
+    public static Map<String, String> getComparedMap(Map<String, String> cond, Map<String, String> book) {
        List<Boolean> result = cond.entrySet()
                                   .stream()
                                   .map(c -> book.containsKey(c.getKey()) && book.containsValue(c.getValue()))
@@ -22,19 +22,15 @@ public class App {
         return book;
     }
 
-    public static List<Map<String,String>> findWhere(List<Map<String, String>> books, Map<String, String> where) {
-        List<Map<String,String>> result = new ArrayList<>();
-
+    public static List<Map<String, String>> findWhere(List<Map<String, String>> books, Map<String, String> where) {
         if (books.isEmpty() || where.isEmpty()) {
-            return result;
+            return new ArrayList<>();
         }
 
-        result = books.stream()
-                      .map(book -> getComparedMap(where, book))
-                      .filter(b -> !b.isEmpty())
-                      .collect(Collectors.toList());
-
-        return result;
+        return books.stream()
+                    .map(book -> getComparedMap(where, book))
+                    .filter(b -> !b.isEmpty())
+                    .collect(Collectors.toList());
     }
 }
 //END
