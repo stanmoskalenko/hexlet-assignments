@@ -11,15 +11,15 @@ class App {
   public static String toString(Map<String, Integer> words) {
     if (words.isEmpty()) {
       return "{}";
-    } else {
-      StringBuilder result = new StringBuilder("{\n");
-
-      for (var key: words.keySet()) {
-        result.append("  " + key + ":" + " " + words.get(key) + "\n");
-      }
-
-      return result.append("}").toString();
     }
+
+    StringBuilder result = new StringBuilder("{\n");
+
+    for (var key: words.keySet()) {
+      result.append("  " + key + ":" + " " + words.get(key) + "\n");
+    }
+
+    return result.append("}").toString();
   }
 
   public static Map<String,Integer> getWordCount(String sentence) {
