@@ -5,12 +5,12 @@ import java.util.Arrays;
 
 // BEGIN
 class App {
-    private static final List<String> freeDomains = Arrays.asList("gmail.com",
-                                                                  "yandex.ru",
-                                                                  "hotmail.com");
+    private static final List<String> FREE_DOMAINS = Arrays.asList("gmail.com",
+                                                                   "yandex.ru",
+                                                                   "hotmail.com");
     public static long getCountOfFreeEmails(List<String> emails) {
         return emails.stream()
-                     .filter(email -> freeDomains.contains(email.split("@")[1]))
+                     .filter(email -> FREE_DOMAINS.contains(email.split("@")[1]))
                      .count();
     }
 }
