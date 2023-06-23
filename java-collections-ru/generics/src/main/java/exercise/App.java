@@ -4,12 +4,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.stream.Collectors;
 
 
 // BEGIN
 public class App {
-    public static Map<String, String> getComparedMap(Map<String, String> cond, Map<String, String> book) {
+    public static Map<String, String> compareMaps(Map<String, String> cond, Map<String, String> book) {
        List<Boolean> result = cond.entrySet()
                                   .stream()
                                   .map(c -> book.containsKey(c.getKey()) && book.containsValue(c.getValue()))
@@ -28,9 +27,9 @@ public class App {
         }
 
         return books.stream()
-                    .map(book -> getComparedMap(where, book))
+                    .map(book -> compareMaps(where, book))
                     .filter(b -> !b.isEmpty())
-                    .collect(Collectors.toList());
+                    .toList();
     }
 }
 //END
