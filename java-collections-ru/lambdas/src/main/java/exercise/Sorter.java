@@ -3,7 +3,6 @@ package exercise;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.List;
 import java.time.LocalDate;
 
@@ -14,11 +13,12 @@ class Sorter {
             return new ArrayList<String>();
         }
 
-        Function<Map<String, String>, LocalDate> getBirthday = man -> LocalDate.parse(man.get("birthday"));
+        Comparator<Map<String, String>> byBirthday = Comparator.comparing(
+            user -> LocalDate.parse(user.get("birthday")));
 
         return users.stream()
                     .filter(user -> user.get("gender").equals("male"))
-                    .sorted(Comparator.comparing(getBirthday))
+                    .sorted(byBirthday)
                     .map(man -> man.get("name"))
                     .toList();
     }
