@@ -1,7 +1,7 @@
 package exercise;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.stream.Stream;
 
 
 // BEGIN
@@ -11,18 +11,13 @@ class App {
             return new String[0][];
         }
 
-        List<List<String>> iLists = Arrays.asList(image).stream()
-                                                        .map(line -> Arrays.asList(line))
-                                                        .toList();
+        return Arrays.stream(image)
+                     .flatMap(line -> Stream.of(line, line))
+                     .map(line -> Arrays.stream(line)
+                                        .flatMap(element -> Stream.of(element, element))
+                                        .toArray(String[]::new))
+                    .toArray(String[][]::new);
 
-        return iLists.stream()
-                     .map(line -> List.of(List.copyOf(line), line))
-                     .flatMap(l -> l.stream())
-                     .map(line -> line.stream()
-                                      .map(element -> List.of(element, element))
-                                      .flatMap(e -> e.stream())
-                                      .toArray(String[]::new))
-                     .toArray(String[][]::new);
     }
 }
 // END
