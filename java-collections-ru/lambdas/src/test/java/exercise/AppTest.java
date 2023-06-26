@@ -6,14 +6,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 // BEGIN
 class AppTest {
     @Test
-    void enlargeEmptyArrayImage () {
+    void enlargeEmptyArrayImage() {
         String[][] image = new String[0][];
         String[][] actual = App.enlargeArrayImage(image);
         assertThat(actual).isEmpty();
     }
 
     @Test
-    void enlargeArrayImage () {
+    void enlargeArrayImage() {
         String[][] image = {
             {"*", "*", "*"},
             {"*", "0", "*"},
@@ -37,7 +37,7 @@ class AppTest {
 
     }
 
-    @Test 
+    @Test
     void enlargeArrayImageWithOneSymbol() {
         String[][] image = {{"*"}};
         String[][] actual = App.enlargeArrayImage(image);

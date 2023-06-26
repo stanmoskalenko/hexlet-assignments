@@ -16,13 +16,13 @@ class App {
                                                         .toList();
 
         return iLists.stream()
-                        .map(line -> List.of(List.copyOf(line), line))
-                        .flatMap(l -> l.stream())
-                        .map(line -> line.stream()
-                                        .map(element -> List.of(element, element))
-                                        .flatMap(e -> e.stream())
-                                        .toArray(String[]::new))
-                        .toArray(String[][]::new);
+                     .map(line -> List.of(List.copyOf(line), line))
+                     .flatMap(l -> l.stream())
+                     .map(line -> line.stream()
+                                      .map(element -> List.of(element, element))
+                                      .flatMap(e -> e.stream())
+                                      .toArray(String[]::new))
+                     .toArray(String[][]::new);
     }
 }
 // END
