@@ -17,7 +17,7 @@ class App {
 
         Predicate<String> isEnv = env -> env.startsWith(ENV_COMMAND);
         Predicate<String> isForwarded = env -> env.contains(ENV_PREFIX);
-        Function<String, String> normalizeEnvs = env -> env.substring(ENV_COMMAND.length()).replace("\"","");
+        Function<String, String> normalizeEnvs = env -> env.substring(ENV_COMMAND.length()).replace("\"", "");
 
         return config.lines()
                      .filter(isEnv)
@@ -25,7 +25,6 @@ class App {
                      .flatMap(env -> Stream.of(env.trim().split(",")))
                      .filter(isForwarded)
                      .map(env -> env.replace(ENV_PREFIX, ""))
-                     .peek(env -> System.out.println(env))
                      .collect(Collectors.joining(","));
     }
 }
