@@ -12,11 +12,11 @@ class App {
         }
 
         return Arrays.stream(image)
-                     .flatMap(line -> Stream.of(line, line))
                      .map(line -> Arrays.stream(line)
                                         .flatMap(element -> Stream.of(element, element))
                                         .toArray(String[]::new))
-                    .toArray(String[][]::new);
+                     .flatMap(line -> Stream.of(line, line))
+                     .toArray(String[][]::new);
 
     }
 }
