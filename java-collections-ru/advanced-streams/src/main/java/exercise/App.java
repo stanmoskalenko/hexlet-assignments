@@ -22,7 +22,7 @@ class App {
         return config.lines()
                      .filter(isEnv)
                      .map(normalizeEnvs)
-                     .flatMap(env -> Stream.of(env.trim().split(",")))
+                     .flatMap(env -> Stream.of(env.split(",")))
                      .filter(isForwarded)
                      .map(env -> env.replace(ENV_PREFIX, ""))
                      .collect(Collectors.joining(","));
