@@ -25,7 +25,7 @@ class App {
             if (!secondDict.containsKey(key)) {
                 return Map.of(key, DELETED);
             }
-            if (firstDict.get(key).equals(secondDict.get(key))){
+            if (firstDict.get(key).equals(secondDict.get(key))) {
                 return Map.of(key, UNCHANGED);
             }
 
