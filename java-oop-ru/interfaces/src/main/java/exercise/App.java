@@ -15,10 +15,9 @@ class App {
         }
 
         return apartments.stream()
-                         .sorted((home, anotherHome) -> home.compareTo(anotherHome))
-                         .peek(System.out::println)
+                         .sorted(Home::compareTo)
                          .limit(count)
-                         .map(home -> home.toString())
+                         .map(Home::toString)
                          .toList();
     }
 }
