@@ -2,44 +2,30 @@ package exercise;
 
 // BEGIN
 public class ReversedSequence implements CharSequence {
-    private String str;
+    private CharSequence str;
 
     public ReversedSequence(String str) {
-        this.str = str;
-    }
-
-    public char[] getReversedSeq() {
-        var reversedStr = new StringBuilder(this.str).reverse().toString();
-        char[] reversedSeq = reversedStr.toCharArray();
-        return reversedSeq;
-    }
-
-    public String getReversedStr() {
-        return new StringBuilder(str).reverse().toString();
+        this.str = new StringBuilder(str).reverse().toString();
     }
 
     @Override
     public char charAt(int idx) {
-        return getReversedSeq()[idx];
+        return str.charAt(idx);
     }
 
     @Override
     public int length() {
-        return getReversedSeq().length;
+        return str.length();
     }
 
     @Override
-    public String subSequence(int start, int end) {
-        return getReversedStr().substring(start, end);
+    public CharSequence subSequence(int start, int end) {
+        return str.subSequence(start, end);
     }
 
     @Override
     public String toString() {
-        var sb = new StringBuilder();
-        for (var elem : getReversedSeq()) {
-            sb.append(elem);
-        }
-        return sb.toString();
+        return str.toString();
     }
 }
 // END

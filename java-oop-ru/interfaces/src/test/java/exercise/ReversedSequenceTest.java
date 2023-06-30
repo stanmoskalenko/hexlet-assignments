@@ -9,7 +9,7 @@ public class ReversedSequenceTest {
     @Test
     void reversedSequenceByStr() {
         var sample = "sample";
-        var actual = new ReversedSequence(sample);
+        CharSequence actual = new ReversedSequence(sample);
 
         assertThat(actual.toString()).isEqualTo("elpmas");
         assertThat(actual.charAt(1)).isEqualTo('l');
