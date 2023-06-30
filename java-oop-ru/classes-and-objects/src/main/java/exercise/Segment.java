@@ -19,10 +19,8 @@ public class Segment {
     }
 
     public Point getMidPoint() {
-        var bPoint = this.getBeginPoint();
-        var ePoint = this.getEndPoint();
-        var midPointX = (bPoint.getX() + ePoint.getX()) / 2;
-        var midPointY = (bPoint.getY() + ePoint.getY()) / 2;
+        var midPointX = (beginPoint.getX() + endPoint.getX()) / 2;
+        var midPointY = (beginPoint.getY() + endPoint.getY()) / 2;
 
         return new Point(midPointX, midPointY);
     }
