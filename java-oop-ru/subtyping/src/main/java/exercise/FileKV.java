@@ -5,49 +5,50 @@ import java.util.Map;
 
 // BEGIN
 class FileKV implements KeyValueStorage {
-    private String path;
-    private Map<String, String> storage;
+    private String storagePath;
+    private Map<String, String> fileStorage;
 
-    public Map<String, String> mergeData(String path, Map<String, String> initialValue) {
-        Map<String, String> storage = new HashMap<>(initialValue);
+    public Map<String, String> mergeData(String storagePath,
+                                         Map<String, String> initialValue) {
+        Map<String, String> fileStorage = new HashMap<>(initialValue);
         // Get data from file
-        String content = Utils.readFile(path);
+        String content = Utils.readFile(storagePath);
         var data = Utils.unserialize(content);
-        storage.putAll(data);
+        fileStorage.putAll(data);
         // Write data to file, with initialValue
-        String updatedData = Utils.serialize(storage);
-        Utils.writeFile(path, updatedData);
+        String updatedData = Utils.serialize(fileStorage);
+        Utils.writeFile(storagePath, updatedData);
 
-        return storage;
+        return fileStorage;
     }
 
-    public FileKV(String path, Map<String, String> initialValue) {
-        this.path = path;
-        this.storage = mergeData(path, initialValue);
+    public FileKV(String storagePath, Map<String, String> initialValue) {
+        this.storagePath = storagePath;
+        this.fileStorage = mergeData(storagePath, initialValue);
     }
 
     @Override
      public void set(String key, String value) {
-        storage.put(key, value);
-        var content = Utils.serialize(storage);
-        Utils.writeFile(path, content);
+        fileStorage.put(key, value);
+        var content = Utils.serialize(fileStorage);
+        Utils.writeFile(storagePath, content);
     }
 
     @Override
     public String get(String key, String defaultValue) {
-        return storage.getOrDefault(key, defaultValue);
+        return fileStorage.getOrDefault(key, defaultValue);
     }
 
     @Override
     public void unset(String key) {
-        storage.remove(key);
-        var content = Utils.serialize(storage);
-        Utils.writeFile(path, content);
+        fileStorage.remove(key);
+        var content = Utils.serialize(fileStorage);
+        Utils.writeFile(storagePath, content);
     }
 
     @Override
     public Map<String, String> toMap() {
-       var content = Utils.readFile(path);
+       var content = Utils.readFile(storagePath);
         return Utils.unserialize(content);
     }
 }
