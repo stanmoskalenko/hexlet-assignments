@@ -5,8 +5,13 @@ import java.util.Map;
 
 // BEGIN
 class FileKV implements KeyValueStorage {
-    private String storagePath;
-    private Map<String, String> fileStorage;
+    private final String storagePath;
+    private final Map<String, String> fileStorage;
+
+    public FileKV(String storagePath, Map<String, String> initialValue) {
+        this.storagePath = storagePath;
+        this.fileStorage = mergeData(storagePath, initialValue);
+    }
 
     public Map<String, String> mergeData(String storagePath,
                                          Map<String, String> initialValue) {
@@ -22,13 +27,8 @@ class FileKV implements KeyValueStorage {
         return fileStorage;
     }
 
-    public FileKV(String storagePath, Map<String, String> initialValue) {
-        this.storagePath = storagePath;
-        this.fileStorage = mergeData(storagePath, initialValue);
-    }
-
     @Override
-     public void set(String key, String value) {
+    public void set(String key, String value) {
         fileStorage.put(key, value);
         var content = Utils.serialize(fileStorage);
         Utils.writeFile(storagePath, content);
@@ -48,7 +48,7 @@ class FileKV implements KeyValueStorage {
 
     @Override
     public Map<String, String> toMap() {
-       var content = Utils.readFile(storagePath);
+        var content = Utils.readFile(storagePath);
         return Utils.unserialize(content);
     }
 }
