@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 // BEGIN
-final class PairedTag extends Tag {
+public final class PairedTag extends Tag {
 
     private final String body;
     private final List<Tag> childSimpleTags;
