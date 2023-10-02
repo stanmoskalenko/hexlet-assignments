@@ -3,10 +3,10 @@ package exercise;
 // BEGIN
 class Circle {
 
-    int radius;
-    Point point;
+    private final int radius;
+    public final Point point;
 
-    Circle(Point point, int radius) {
+    public Circle(Point point, int radius) {
         this.point = point;
         this.radius = radius;
     }
@@ -16,11 +16,10 @@ class Circle {
     }
 
     public double getSquare() throws NegativeRadiusException {
-
         if (radius < 0) {
             throw new NegativeRadiusException("Не удалось посчитать площадь");
         }
-        return Math.PI * radius * radius;
+        return Math.PI * Math.pow(radius, 2);
     }
 }
 // END
