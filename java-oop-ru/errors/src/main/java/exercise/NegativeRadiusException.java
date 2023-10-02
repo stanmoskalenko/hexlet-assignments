@@ -1,11 +1,10 @@
 package exercise;
 
 // BEGIN
-class NegativeRadiusException extends Exception{
+class NegativeRadiusException extends Exception {
 
-    public NegativeRadiusException(String message) {
+    NegativeRadiusException(String message) {
         super(message);
     }
-
 }
 // END

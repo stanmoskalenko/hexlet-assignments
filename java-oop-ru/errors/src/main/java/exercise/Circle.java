@@ -6,7 +6,7 @@ class Circle {
     int radius;
     Point point;
 
-    public Circle(Point point, int radius) {
+    Circle(Point point, int radius) {
         this.point = point;
         this.radius = radius;
     }

@@ -6,7 +6,8 @@ class App {
     public static void printSquare(Circle circle) {
 
         try {
-            circle.getSquare();
+            var square = circle.getSquare();
+            System.out.println(Math.round(square));
         } catch (NegativeRadiusException e) {
             System.out.println(e.getMessage());
         } finally {
