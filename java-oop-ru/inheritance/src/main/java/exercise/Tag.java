@@ -17,7 +17,7 @@ public abstract class Tag {
         return name;
     }
 
-    public String getAttribute() {
+    public String stringifyAttributes() {
         var result = new StringBuilder();
 
         for (var entry : attribute.entrySet()) {

@@ -30,7 +30,7 @@ public final class PairedTag extends Tag {
 
         return result.append("<")
                 .append(getName())
-                .append(getAttribute())
+                .append(stringifyAttributes())
                 .append(">")
                 .append(childTags)
                 .append(body)
