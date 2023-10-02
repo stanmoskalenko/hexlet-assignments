@@ -1,42 +1,46 @@
 package exercise;
 
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Objects;
+
 
 // BEGIN
 class Validator {
     public static final String ERROR_MSG_NOT_NULL = "can not be null";
     public static final String ERROR_MSG_TOO_SMALL_LENGTH = "length less than ";
 
+    private static String getFieldValue(Field field, Object object) {
+        try {
+            field.setAccessible(true);
+            return (String) field.get(object);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
     private static Map<String, List<String>> getInvalidField(Field field, Object object) {
         Map<String, List<String>> invalidField = new HashMap<>();
         field.setAccessible(true);
         List<String> errorMsgAcc = new ArrayList<>();
         var fieldName = field.getName();
+        String fieldValue = getFieldValue(field, object);
 
-        if (Objects.nonNull(field.getDeclaredAnnotation(NotNull.class))) {
-            try {
-                var value = field.get(object);
-                if (value == null) {
-                    errorMsgAcc.add(ERROR_MSG_NOT_NULL);
-                }
-            } catch (IllegalArgumentException | IllegalAccessException e) {
-                System.out.println(e.getMessage());
+        if (field.isAnnotationPresent(NotNull.class)) {
+            if (fieldValue == null) {
+                errorMsgAcc.add(ERROR_MSG_NOT_NULL);
             }
         }
 
-        if (Objects.nonNull(field.getDeclaredAnnotation(MinLength.class))) {
+        if (field.isAnnotationPresent(MinLength.class)) {
             var minLength = field.getDeclaredAnnotation(MinLength.class).minLength();
-            try {
-                String value = "";
-                if (Objects.nonNull(field.get(object))) {
-                    value = field.get(object).toString();
-                }
-                if (value.length() < minLength) {
-                    errorMsgAcc.add(ERROR_MSG_TOO_SMALL_LENGTH + minLength);
-                }
-            } catch (IllegalArgumentException | IllegalAccessException e) {
-                System.out.println(e.getMessage());
+            if (fieldValue == null || fieldValue.length() < minLength) {
+                errorMsgAcc.add(ERROR_MSG_TOO_SMALL_LENGTH + minLength);
             }
         }
 
@@ -48,21 +52,15 @@ class Validator {
         }
     }
 
+
     public static List<String> validate(Object object) {
         Field[] fields = object.getClass().getDeclaredFields();
 
         return Arrays.stream(fields)
+                .filter(field -> field.isAnnotationPresent(NotNull.class))
                 .map(field -> {
-                            if (field.getDeclaredAnnotation(NotNull.class) != null) {
-                                field.setAccessible(true);
-                                try {
-                                    var value = field.get(object);
-                                    if (value == null) {
-                                        return field.getName();
-                                    }
-                                } catch (IllegalArgumentException | IllegalAccessException e) {
-                                    System.out.println(e.getMessage());
-                                }
+                            if (getFieldValue(field, object) == null) {
+                                return field.getName();
                             }
                             return null;
                         }
