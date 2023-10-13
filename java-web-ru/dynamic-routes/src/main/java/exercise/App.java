@@ -25,17 +25,15 @@ public final class App {
             var companyId = ctx.pathParam("id");
             var result = COMPANIES.stream()
                     .filter(company -> company.get("id").equals(companyId))
-                    .map(Map::entrySet)
-                    .flatMap(Set::stream)
-                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-            if (result.isEmpty()) {
+                    .findFirst();
+            if (result.isPresent()) {
+                ctx.json(result.get());
+            } else {
                 ctx.status(404);
                 ctx.result("Company not found");
 //                NOTE:
 //                      Тесты не проходят, т.к. ожидается сообщение в теле запроса
 //                      throw new NotFoundResponse("Company not found");
-            } else {
-                ctx.json(result);
             }
         });
         // END
