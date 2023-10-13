@@ -19,9 +19,12 @@ public final class App {
             ctx.contentType("text/html");
             var id = ctx.pathParamAsClass("id", Long.class).get();
             var user = Data.getUserById(id);
-            user.ifPresent(currentUser -> ctx.render(
-                    "users/show.jte",
-                    Collections.singletonMap("user", currentUser)));
+            if (user.isPresent()) {
+                ctx.render("users/show.jte", Collections.singletonMap("user", user.get()));
+            } else {
+                ctx.status(404);
+                ctx.render("users/not-found.jte", Collections.singletonMap("notFoundId", id));
+            }
         });
 
         app.get("/users", ctx -> {

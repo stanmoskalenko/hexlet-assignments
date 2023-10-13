@@ -9,12 +9,12 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.17.2/antd.min.css"
-              rel="stylesheet"
-              crossorigin="anonymous">
-        <link rel="icon"
-              type="image/svg+xml"
-              href="https://c.staticblitz.com/assets/favicon_sb-861fe1b85c0dc928750c62de15fed96fc75e57ee366bd937bad17a3938917b3f.svg">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.17.2/antd.min.css"
+          rel="stylesheet"
+          crossorigin="anonymous">
+    <link rel="icon"
+          type="image/svg+xml"
+          href="https://c.staticblitz.com/assets/favicon_sb-861fe1b85c0dc928750c62de15fed96fc75e57ee366bd937bad17a3938917b3f.svg">
     <title>${user.getFirstName()} ${user.getLastName()}</title>
 </head>
 <body>
@@ -38,7 +38,7 @@
                             </svg>
                         </span>
                     </span>
-                    Назад
+                    Back
                 </button>
             </div>
             <div class="ant-spin-container">
