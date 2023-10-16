@@ -8,7 +8,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class UserPage {
-    User page;
+    private User page;
 
 }
 // END

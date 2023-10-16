@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 // BEGIN
 public class UsersPage {
-    List<User> page;
+    private List<User> page;
 
 }
 // END
