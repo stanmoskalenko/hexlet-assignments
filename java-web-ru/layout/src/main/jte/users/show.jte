@@ -11,8 +11,7 @@
                 <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
+                    <th scope="col">Name</th>
                     <th scope="col">Email</th>
                 </tr>
                 </thead>
@@ -21,8 +20,7 @@
                     <th scope="row">
                         ${page.getUser().getId()}
                     </th>
-                    <td>${page.getUser().getFirstName()}</td>
-                    <td>${page.getUser().getLastName()}</td>
+                    <td>${page.getUser().getFirstName()} ${page.getUser().getLastName()}</td>
                     <td>${page.getUser().getEmail()}</td>
                 </tr>
                 </tbody>
