@@ -27,7 +27,7 @@ content = @`
                     </tr>
                 </thead>
                 <tbody>
-                @for(var user : page.getPage())
+                @for(var user : page.getUsers())
                     <tr>
                         <th scope="row">
                             ${user.getId()}

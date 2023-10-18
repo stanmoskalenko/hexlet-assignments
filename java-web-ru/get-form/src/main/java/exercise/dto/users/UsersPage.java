@@ -11,11 +11,11 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 public class UsersPage {
-    public List<User> page;
+    public List<User> users;
     public String term;
 
     public UsersPage filter(String term) {
-        var filteredUsers = page.stream()
+        var filteredUsers = users.stream()
                 .filter(user -> {
                             var normalizeTerm = StringUtils.lowerCase(term);
                             var normalizeUserName = StringUtils.lowerCase(
