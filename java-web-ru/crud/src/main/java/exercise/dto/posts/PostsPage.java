@@ -12,6 +12,7 @@ import java.util.List;
 public class PostsPage {
     private List<Post> posts;
     private Integer pageCount;
+    private Integer currentPage;
 
 }
 

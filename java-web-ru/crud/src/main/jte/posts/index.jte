@@ -3,6 +3,7 @@
 
 @template.layout.page(
 content = @`
+    !{var currentPage = 1;}
     <div class="mx-auto p-4 py-md-5">
         <main>
             <header>
@@ -37,11 +38,13 @@ content = @`
                 </div>
                 <nav>
                     <ul class="pagination">
-                        @for(Integer i = 1; i <= page.getPageCount(); i++)
-                            <li class="page-item">
-                                <a class="page-link" href="?page=${String.valueOf(i)}">${String.valueOf(i)}</a>
-                            </li>
-                        @endfor
+                        @if(page.getCurrentPage() != 1)
+                            <li class="page-item"><a class="page-link" href="?page=${page.getCurrentPage() - 1}"> < Назад</a></li>
+                        @endif
+
+                        @if(page.getCurrentPage() < page.getPageCount())
+                            <li class="page-item"><a class="page-link" href="?page=${page.getCurrentPage() + 1}">Вперед > </a></li>
+                        @endif
                     </ul>
                 </nav>
             @endif

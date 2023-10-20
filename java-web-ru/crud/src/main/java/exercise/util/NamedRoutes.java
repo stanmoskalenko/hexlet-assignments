@@ -3,7 +3,6 @@ package exercise.util;
 public class NamedRoutes {
 
     private static final String ROOT_PATH = "/";
-    private static final String POSTS_PATH_WITH_PARAMS = "/posts/";
     private static final String POSTS_PATH = "/posts";
 
     public static String rootPath() {
@@ -11,7 +10,7 @@ public class NamedRoutes {
     }
 
     public static String postsPath(String id) {
-        return POSTS_PATH_WITH_PARAMS + id;
+        return POSTS_PATH + "/" + id;
     }
 
     public static String postsPath() {

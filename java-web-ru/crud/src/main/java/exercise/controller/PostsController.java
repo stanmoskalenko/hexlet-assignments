@@ -14,9 +14,10 @@ import io.javalin.http.NotFoundResponse;
 public class PostsController {
 
     private static final Integer PAGE_ITEMS_COUNT = 5;
-    private static final Integer DEFAULT_PAGE_NUMBER = 0;
+    private static final Integer DEFAULT_PAGE_NUMBER = 1;
     private static final Integer POSTS_COUNT = PostRepository.getEntities().size();
     private static final Integer PAGE_COUNT = POSTS_COUNT / PAGE_ITEMS_COUNT;
+
     public static List<Post> getPage(Integer pageNumber) {
         List<Post> result = new ArrayList<>() {
         };
@@ -47,7 +48,7 @@ public class PostsController {
         ctx.fullUrl();
         var pageNumber = ctx.queryParamAsClass("page", Integer.class).getOrDefault(DEFAULT_PAGE_NUMBER);
         var postsPage = getPage(pageNumber);
-        var page = new PostsPage(postsPage, PAGE_COUNT);
+        var page = new PostsPage(postsPage, PAGE_COUNT, pageNumber);
         ctx.render("posts/index.jte", Collections.singletonMap("page", page));
     }
 
