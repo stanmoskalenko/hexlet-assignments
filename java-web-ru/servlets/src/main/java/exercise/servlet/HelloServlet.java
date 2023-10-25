@@ -14,9 +14,7 @@ public class HelloServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        var queryStr =  req.getQueryString();
-        var name = queryStr.substring(queryStr.lastIndexOf("=") + 1);
-
+        var name =  req.getParameter("name");
         if (name.isEmpty()) {
             name = "Guest";
         }
