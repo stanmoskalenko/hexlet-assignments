@@ -29,4 +29,12 @@ class AppTest {
         assertThat(response.getStatus()).isEqualTo(200);
         assertThat(response.getBody()).contains("Hello, " + userName + "!");
     }
+
+    @Test
+    void testHelloPageGuest() {
+        var userName = "user1";
+        var response = Unirest.get(baseUrl + "/hello?name=").asString();
+        assertThat(response.getStatus()).isEqualTo(200);
+        assertThat(response.getBody()).contains("Hello, Guest!");
+    }
 }

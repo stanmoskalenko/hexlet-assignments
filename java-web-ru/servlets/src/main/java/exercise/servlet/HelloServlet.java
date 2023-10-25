@@ -16,6 +16,10 @@ public class HelloServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         var queryStr =  req.getQueryString();
         var name = queryStr.substring(queryStr.lastIndexOf("=") + 1);
+
+        if (name.isEmpty()) {
+            name = "Guest";
+        }
         var msg = String.format("Hello, %s!", name);
         req.setAttribute("message", msg);
         req.getRequestDispatcher("/WEB-INF/hello.jsp").forward(req, resp);
