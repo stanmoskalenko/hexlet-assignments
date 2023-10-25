@@ -33,7 +33,7 @@ public class SessionsController {
                     .getOrThrow(ValidationException::new);
 
             var user = UsersRepository.findByName(name);
-            MainPage mainPage = new MainPage(user.getName());
+            var mainPage = new MainPage(user.getName());
             ctx.sessionAttribute("currentUser", user.getName());
             ctx.render("index.jte", Collections.singletonMap("page", mainPage)).status(302);
 
