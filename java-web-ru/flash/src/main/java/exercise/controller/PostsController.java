@@ -41,7 +41,7 @@ public class PostsController {
             var page = new PostsPage(PostRepository.getEntities());
             page.setFlash(SUCCESS_ALERT_MSG);
 
-            ctx.render("posts/index.jte", Collections.singletonMap("page", page)).status(302);
+            ctx.render("posts/index.jte", Collections.singletonMap("page", page));
 
         } catch (ValidationException e) {
             var name = ctx.formParamAsClass("name", String.class).get();
