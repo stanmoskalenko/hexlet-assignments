@@ -21,12 +21,12 @@ public class Application {
 
     // BEGIN
     @Autowired
-    private UserProperties admins;
+    private UserProperties userProperties;
 
     @GetMapping("/admins")
     public List<String> admins() {
         return users.stream()
-                .filter(user -> admins.getAdmins().contains(user.getEmail()))
+                .filter(user -> userProperties.getAdmins().contains(user.getEmail()))
                 .map(User::getName)
                 .sorted()
                 .toList();
@@ -40,10 +40,9 @@ public class Application {
 
     @GetMapping("/users/{id}")
     public Optional<User> show(@PathVariable Long id) {
-        var user = users.stream()
+        return users.stream()
                 .filter(u -> u.getId() == id)
                 .findFirst();
-        return user;
     }
 
     public static void main(String[] args) {
