@@ -8,7 +8,7 @@ public class MaxThread extends Thread {
     private int[] numbers;
     private Integer maxInt;
 
-    public void init(int[] numbers) {
+    public MaxThread(int[] numbers) {
         this.numbers = numbers;
     }
 

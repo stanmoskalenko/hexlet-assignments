@@ -7,7 +7,7 @@ public class MinThread extends Thread {
     private int[] numbers;
     private Integer minInt;
 
-    public void init(int[] numbers) {
+    public MinThread(int[] numbers) {
         this.numbers = numbers;
     }
 

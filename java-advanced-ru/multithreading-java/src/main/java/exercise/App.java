@@ -7,11 +7,8 @@ class App {
 
     public static Map<String, Integer> getMinMax(int[] numbers) {
         Map<String, Integer> result = new HashMap<>();
-        MinThread minThread = new MinThread();
-        MaxThread maxThread = new MaxThread();
-
-        minThread.init(numbers);
-        maxThread.init(numbers);
+        MinThread minThread = new MinThread(numbers);
+        MaxThread maxThread = new MaxThread(numbers);
 
         minThread.start();
         maxThread.start();
@@ -28,4 +25,6 @@ class App {
 
         return result;
     }
+
+
 }
