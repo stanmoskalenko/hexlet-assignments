@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 public class UserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     public Flux<User> findAll() {
         return userRepository.findAll();
